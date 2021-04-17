@@ -3,38 +3,38 @@ use std::collections::HashMap;
 /// Information about a coin. INCOMPLETE
 #[derive(Debug, Deserialize)]
 pub struct CoinInfo {
-    id: String,
-    symbol: String,
-    name: String,
-    asset_platform_id: Option<u64>,
-    block_time_in_minutes: u64,
-    hashing_algorithm: Option<String>,
-    categories: Vec<String>,
-    public_notice: Option<String>,
-    localization: HashMap<String, String>,
-    description: HashMap<String, String>,
-    links: Links,
-    image: ImageLinks,
+    pub id: String,
+    pub symbol: String,
+    pub name: String,
+    pub asset_platform_id: Option<u64>,
+    pub block_time_in_minutes: u64,
+    pub hashing_algorithm: Option<String>,
+    pub categories: Vec<String>,
+    pub public_notice: Option<String>,
+    pub localization: HashMap<String, String>,
+    pub description: HashMap<String, String>,
+    pub links: Links,
+    pub image: ImageLinks,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct ImageLinks {
-    thumb: String,
-    small: String,
-    large: String,
+    pub thumb: String,
+    pub small: String,
+    pub large: String,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct Links {
-    homepage: Vec<String>,
-    blockchain_site: Vec<String>,
-    official_forum_url: Vec<String>,
-    chat_url: Vec<String>,
-    announcement_url: Vec<String>,
-    twitter_screen_name: Option<String>,
-    facebook_username: Option<String>,
-    bitcointalk_thread_identifier: Option<u64>,
-    telegram_channel_identifier: Option<String>,
-    subreddit_url: Option<String>,
-    repos_url: HashMap<String, Vec<String>>,
+    pub homepage: Vec<String>,
+    pub blockchain_site: Vec<String>,
+    pub official_forum_url: Vec<String>,
+    pub chat_url: Vec<String>,
+    pub announcement_url: Vec<String>,
+    pub twitter_screen_name: Option<String>,
+    pub facebook_username: Option<String>,
+    pub bitcointalk_thread_identifier: Option<u64>,
+    pub telegram_channel_identifier: Option<String>,
+    pub subreddit_url: Option<String>,
+    pub repos_url: HashMap<String, Vec<String>>,
 }
