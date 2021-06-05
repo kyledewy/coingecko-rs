@@ -8,6 +8,7 @@ extern crate serde;
 extern crate thiserror;
 
 mod coin_info;
+mod market;
 mod simple_price;
 mod utils;
 
@@ -17,6 +18,7 @@ use isahc::HttpClient;
 
 pub use crate::coin_info::*;
 pub use crate::simple_price::*;
+pub use crate::market::*;
 
 const API: &str = "https://api.coingecko.com/api/v3/";
 
@@ -59,6 +61,15 @@ impl Client {
         const COINS_LIST: &str = concatcp!(crate::API, "/coins/list");
 
         utils::get_json(&self.http, COINS_LIST).await
+    }
+
+    /// Fetches (paginated) market data for all coins or specific coins
+    pub async fn coins_markets(&self, req: CoinsMarketsReq) -> Result<Vec<Market>, Error> {
+        const COINS_MARKETS: &str = concatcp!(crate::API, "/coins/markets");
+
+        let uri = fomat!((COINS_MARKETS) "?" (req.query()));
+
+        utils::get_json(&self.http, &uri).await
     }
 }
 

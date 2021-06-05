@@ -10,6 +10,7 @@ At this time, async support is provided by [isahc](https://lib.rs/crates/isahc).
 - `/simple/price`
 - `/coins/list`
 - `/coins/{id}`
+- `/coins/markets`
 
 ## Example
 
