@@ -8,6 +8,7 @@ extern crate serde;
 extern crate thiserror;
 
 mod coin_info;
+mod historic_price;
 mod market;
 mod simple_price;
 mod utils;
@@ -17,8 +18,9 @@ use const_format::concatcp;
 use isahc::HttpClient;
 
 pub use crate::coin_info::*;
-pub use crate::simple_price::*;
+pub use crate::historic_price::*;
 pub use crate::market::*;
+pub use crate::simple_price::*;
 
 const API: &str = "https://api.coingecko.com/api/v3/";
 
@@ -44,6 +46,15 @@ impl Client {
 
         let uri = fomat!((SIMPLE) "?" (req.query()));
 
+        utils::get_json(&self.http, &uri).await
+    }
+
+    /// Fetches the historic price
+    pub async fn historic_price(&self, req: HistoricPriceReq) -> Result<HistoricPrice, Error> {
+        const COINS: &str = concatcp!(crate::API, "/coins");
+
+        let uri = fomat!((COINS) "/" (req.id) "/history/" "?" (req.query()));
+        
         utils::get_json(&self.http, &uri).await
     }
 
