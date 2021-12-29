@@ -94,7 +94,7 @@ pub enum Error {
     Deserialization(#[from] serde_json::Error),
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Coin {
     pub id: String,
     pub symbol: String,
